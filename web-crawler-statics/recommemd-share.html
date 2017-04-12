@@ -1,0 +1,586 @@
+
+ 
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link type="text/css" href="//static.iqiyi.com/css/20161109/h5-recommend-new.css" rel="stylesheet"/>
+    <title>推荐有礼</title>
+<script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="//static.iqiyi.com/js/html5/js/lib/lib.2.0.0.min.js"></script>
+<script type="text/javascript" src="//static.iqiyi.com/js/common/wxshare_h5.js"></script>
+<script src="//static.iqiyi.com/js/common/iqiyiJsBridge.min.js"></script>
+<script type="text/javascript">
+    var ua = navigator.userAgent.toLowerCase();
+    if(/micromessenger/i.test(ua)) {
+        var shareText = ["我追《灰姑娘与四骑士》一直用爱奇艺VIP，邀请你一起体验，买就送！"];
+        var sharePic = ['//pic0.qiyipic.com/common/20160907/tuijian_vip.jpg'];
+        var shareLink = '';
+        var platform = '97ae2982356f69d8';
+        $.ajax({
+            url: '//serv.vip.iqiyi.com/cashback/recommend/getRecUrl.do?P00001=&short=1&platform=' + platform + '&lang=zh_CN&app_lm=cn',
+            dataType: "jsonp",
+            jsonp: "callback",
+            success: function(data) {
+                shareLink = data.data.data.url;
+                var shareId = 'wx85e5e7f44c7cc50e';
+                configWX(shareId, function() {
+                    wx.ready(function() {
+                        wx.hideAllNonBaseMenuItem();
+                        wx.showMenuItems({
+                            menuList: ['menuItem:share:appMessage','menuItem:share:timeline','menuItem:share:qq']
+                        });
+                        var wxData = {
+                            title: data.data.data.title, // 分享标题
+                            desc: data.data.data.word, // 分享描述
+                            link: shareLink, // 分享链接
+                            imgUrl: data.data.data.icon, // 分享图标
+                            success: function() {
+                            },
+                            cancel: function() {
+                            }
+                        };
+                        wx.onMenuShareAppMessage(wxData);
+                        wx.onMenuShareTimeline(wxData);
+                        wx.onMenuShareQQ(wxData);
+                    });
+                });
+            },
+            error: function(err) {
+            }
+        });
+    }
+</script>
+<style type="text/css">
+    .recommend-filter {
+        position: fixed;
+    }
+</style>
+</head>
+<body>
+<div class="rec_body">
+    <section class="m-act-top">
+        <!-- 活动规则 -->
+        <div class="link-rule"><a href="javascript:;" class="c-link act-rule">活动规则&gt;</a></div>
+        <!-- 活动规则 end -->
+        <!-- 标语 -->
+        <div class="act-title">推荐好友买会员，每单最高送50元现金！</div>
+        <!-- 标语 end -->
+        <!-- 返现列表 -->
+        <div class="cashback-list">
+            <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                    <tr>
+                        <th>好友购买</th>
+                        <th>好友免费延长</th>
+                        <th>您的奖励</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>年卡¥198</td>
+                        <td>70天VIP</td>
+                        <td>¥50</td>
+                    </tr>
+                    <tr>
+                        <td>季卡¥58</td>
+                        <td>30天VIP</td>
+                        <td>¥10</td>
+                    </tr>
+                    <tr>
+                        <td>月卡¥19.8</td>
+                        <td>10天VIP</td>
+                        <td>¥3</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 返现列表 end-->
+        <!-- 活动提示 -->
+        <div class="m-act-tip" style="background-color: #fdc648">马上邀请好友赚现金</div>
+        <!-- 活动提示 -->
+        <!-- 按钮 -->
+        <div class="m-act-btn" style="background-color: #fdc648">
+            <a href="javascript:void(0)" class="c-link go-poster" rseat="viprecommend_share1" block="viprecommend">生成邀请海报</a>
+            <a href="javascript:void(0)" class="c-link go-link" rseat="viprecommend_share2" block="viprecommend">分享邀请链接</a>
+        </div>
+        <!-- 按钮 end-->
+    </section>
+    <!-- 未登录状态 m-act-bottom追加类rank-list-radius -->
+    <section class="m-act-bottom rank-list-radius">
+        <div class="m-act-userInfo">
+            <div class="userInfo">
+                <span class="userPhoto user-icon" style="background-image:url('//www.qiyipic.com/common/fix/headicons/male-70.png')"></span>
+                <div class="name user-nickname"></div>
+                <a href="javascript:void(0)" class="exit-link">退出&gt;</a>
+            </div>
+            <div class="incomeInfo">
+                <div class="info"></div>
+                <a href="//vip.iqiyi.com/recommemd-detail-h5.html" class="c-link income-detail">收益明细&gt;</a>
+            </div>
+        </div>
+        <!-- 登录后用户信息 end-->
+        <!-- 返现排行榜 -->
+        <!-- 未登录状态追加类名称-->
+        <div class="cashback-rank hide">
+            <div class="title"><span class="c-title"><i class="icon-rankCup"></i>返现排行榜</span></div>
+            <div class="rank-list-wrap">
+                <ul class="rank-list">
+                    <!-- <li>
+                        <span class="userPhoto" style="background-image:url('http://www.qiyipic.com/common/fix/headicons/male-70.png');"></span>
+                        <div class="info">
+                            <span class="c-title">shitou0526</span>
+                            <span class="c-des">已邀请<span>100</span>单，共获得<span>1200</span>元返现~</span>
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+        <!-- 返现排行榜end -->
+    </section>
+    <footer class="m-act-footer">
+        <img src="//www.qiyipic.com/common/fix/h5-recommend-new/footer-logo.png" alt="footer-logo" />
+    </footer>
+</div>
+
+    <!-- 遮罩层 -->
+    <div class="cover hide"></div>
+    <!-- 遮罩层end -->
+    <!-- 弹出层 -->
+    <div class="m-act-pop hide">
+        <a href="javascript:void(0)" class="popup-close"> <i class="c-close"></i></a>
+        <div class="title">您的专属邀请链接是：</div>        
+        <div class="info">
+            <textarea style="width:100%; background-color: #ebebeb; resize:none; height: 120px;" readonly type="text">快来加入爱奇艺VIP，奖励升级，经我推荐购买最高额外送70天会员哦~猛戳购买：http://vip.iqiyi.com/recommemd-h5.html?fromSeek=ccsqcccsec&fromPlatform=97ae2982356f69d8</textarea> 
+        </div>
+        <div class="tip">长按上文，全选后复制，发给好友</div>
+    </div>
+
+    <div class="m-act-pop" style="opacity: 0; z-index : -3;">
+        <div class="info refer-dom">快来加入爱奇艺VIP，奖励升级，经我推荐购买最高额外送70天会员哦~猛戳购买：http://vip.iqiyi.com/recommemd-h5.html?fromSeek=ccsqcccsec&fromPlatform=97ae2982356f69d8</div>
+    </div>
+    <!-- 弹出层 end-->
+    <!-- 弹出层 -->
+    <div class="m-act-tip-pop hide">
+        <div class="title">您的账号已封停</div>
+        <div class="info">为了正常发放奖励，请解封或切换账号后分享！</div>
+       <a href="javascript:void(0)" class="btn-link popup-ok">好的</a>
+    </div>
+    <!-- 弹出层 end-->
+    <!-- 分享引导 -->
+    <div class="recommend-filter hide" style="display:block;">
+        <div class="innerTop"></div>
+        <div class="innerBottom">
+            <p class="text">点击右上角，立刻分享给好友，坐等返现吧</p>
+            <div class="Circle">
+                    get
+            </div>
+        </div>
+    </div>
+    <!-- 分享引导end -->
+    <!-- 反馈信息 -->
+    <div class="recommend-payResult recommend-paying low-version hide">
+        <div class="m-box-items m-box-items-full">
+            <section class="m-feedback-tips">
+                <div class="tip-icon"><i class="c-glyphicon c-glyphicon-arrowDrop"></i></div>
+                <p class="c-info">推荐好友拿返现是新版本功能哦！
+                    <br>请升级到最新版本</p>
+            </section>
+        </div>
+        <div class="bottom-Btn">立即升级</div>
+    </div>
+    <!-- 反馈信息end -->
+    <!-- 二维码提示 -->
+    <div class="poster hide">
+        <img src=""  style="width:100%" />
+        <div class="QR-code-tip">长按上图 保存图片 发给好友 </div>
+    </div>
+        <!-- 二维码 end-->
+</body>
+<script type="text/javascript" src="//static.iqiyi.com/js/common/h5pingback.extra.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    var P00001 = $.cookie.get('P00001');
+    var P00003 = $.cookie.get('P00003');
+    var fv = $.url.getQueryValue(window.location.href,'fv');
+    var connector = location.search? '&' : '?';
+    var shareLink = '';
+    var shareTitle = '';
+    var shareDesc = '';
+    var sharePic = '';
+    var invalidUser = false;
+    var env = 'others';
+    if(/micromessenger/i.test(ua)) {
+        env = 'wx';
+    } else if(/iqiyi/i.test(ua)) {
+        env = 'iqiyi';
+    }
+
+    setTimeout(function() {
+        // rank list
+        getJson('//act.vip.iqiyi.com/query/rank/getTopRank.action?rankNo=user_rank_879acc3f11a42206&num=5', function(msg) {
+            if(msg.data.code == 'A00000' && msg.data.data.topUsers) {
+                var arr = msg.data.data.topUsers;
+                var str = '';
+                arr.forEach(function(v) {
+                    var nameLength = v.userName.length;
+                    var showName = '';
+                    if(nameLength && nameLength > 0) {
+                        showName = v.userName.slice(0,2) + '***' + v.userName.charAt(nameLength - 1);
+                    } else {
+                        showName = v.userName.charAt(0) + '***';
+                    }
+                    str += '<li>' +
+                        '<span class="userPhoto" style="background-image:url(' + v.icon + ');"></span>' +
+                        '<div class="info">' +
+                            '<span class="c-title">' + showName + '</span>' +
+                            '<span class="c-des">共获得<span>' + v.score/100 + '</span>元返现~</span>' +
+                        '</div>' +
+                    '</li>';
+                });
+                $('.rank-list').html(str);
+                $('.cashback-rank').removeClass('hide');
+            } 
+        });
+
+        P00001 = $.cookie.get('P00001');
+        P00003 = $.cookie.get('P00003');
+        if(!P00001 || !P00003) {
+            return false;
+        }
+       
+
+        var showType = sessionStorage.getItem('showType');
+        sessionStorage.removeItem('showType');
+
+        // nickname
+        getJson('//passport.iqiyi.com/apis/user/info.action?authcookie=' + P00001, function(msg) {
+            if(msg.code == 'A00000' && msg.data.userinfo) {
+                $('.user-nickname').text(msg.data.userinfo.nickname);
+                $('.user-icon').css('background-image', 'url(' + msg.data.userinfo.icon + ')');
+            } 
+        });
+
+        // get recommend url
+        var platform = '97ae2982356f69d8';
+        getJson('//serv.vip.iqiyi.com/cashback/recommend/getRecUrl.do?P00001=' + P00001 + '&short=0&platform=' + platform + '&lang=zh_CN&app_lm=cn&fv=' + fv, function(res) {
+            if(res.data && res.data.code == 'A00000') {
+                shareLink = res.data.data.url;
+                if(fv) {
+                    shareLink = shareLink + '&fv=' + fv; 
+                }
+                shareTitle = res.data.data.title;
+                shareDesc = res.data.data.word;
+                sharePic = res.data.data.icon;
+                var shareId = 'wx85e5e7f44c7cc50e';
+                configWX(shareId, function() {
+                    wx.ready(function() {
+                        wx.hideAllNonBaseMenuItem();
+                        wx.showMenuItems({
+                            menuList: ['menuItem:share:appMessage','menuItem:share:timeline','menuItem:share:qq']
+                        });
+                        var wxData = {
+                            title: shareTitle,
+                            desc: shareDesc,
+                            link: shareLink,
+                            imgUrl: sharePic,
+                            success: function() {
+                            },
+                            cancel: function() {
+                            }
+                        };
+                        wx.onMenuShareAppMessage(wxData);
+                        wx.onMenuShareTimeline(wxData);
+                        wx.onMenuShareQQ(wxData);
+                    });
+                });
+                $('textarea,.refer-dom').html('快来加入爱奇艺VIP，奖励升级，经我推荐购买最高额外送70天会员哦~猛戳购买：' + shareLink);
+                var referHeight = $('.refer-dom').height();
+                $('textarea').height(referHeight);
+                if(showType == 'poster') {
+                    gotoPoster();
+                    return;
+                } else if(showType == 'link') {
+                    if(env == 'wx') {
+                        $('.recommend-filter').removeClass('hide');
+                        $('body').css('overflow', 'hidden');
+                    } else if(env == 'iqiyi') {
+                        iqiyi.share({
+                            title: shareTitle,
+                            desc: shareDesc,
+                            imgUrl: sharePic,
+                            link: shareLink,
+                            success : function() {},
+                            fail : function() {},
+                            cancel : function() {}
+                        });
+                    } else {
+                        $('.cover').removeClass('hide'); 
+                        $('.m-act-pop').removeClass('hide'); 
+                        $('body').css('overflow', 'hidden');
+                    }
+                }
+            } else {
+                invalidUser = true;
+                if(showType == 'link' || showType == 'poster') {
+                   invalidUserHandler(); 
+               }
+            }
+        });
+
+        $.ajax({
+            url: '//serv.vip.iqiyi.com/cashback/zone/queryAccount.do?P00001=' + P00001,
+            dataType: "jsonp",
+            jsonp: "callback",
+            success: function(data) {
+                data = data.data;
+                if (data.code == 'A00000') {
+                    if(data.data.inviteCount > 0) {
+                        $('.incomeInfo .info').html('您已成功邀请<span class="c-num success-amount">' + data.data.inviteCount + '</span>单，<span class="c-num hasGet-amount">' + (data.data.cashbackFee / 100) + '</span>元奖励已到账，<span class="c-num theway-amount">' + (data.data.auditingFee / 100) + '</span>元正在审核中，再接再厉！');
+                    } else {
+                        $('.incomeInfo .info').text('您还没有拿到返现哦~马上邀请好友，坐等返现！');
+                    }
+                    // 您已成功邀请X单，X元奖励已到账，X元正在审核中，再接再厉！
+                    //$('.success-amount').text(data.data.inviteCount)
+                    //$('.hasGet-amount').text(data.data.cashbackFee / 100)
+                    ////$('.theway-amount').text(data.data.auditingFee / 100)
+                    $('.m-act-bottom').removeClass('rank-list-radius');
+                } else if(data.code == 'Q00304') {
+                    // 非法用户
+                    $('.incomeInfo .info').text('您的账号已封停，解封后才能参与活动领奖励哦~');
+                    $('.income-detail').remove();
+                    $('.m-act-bottom').removeClass('rank-list-radius');
+                }
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+    }, 200);
+
+    if(/micromessenger/i.test(ua)) {
+        $('.go-poster').on('click', function() {
+            if(invalidUser) {
+                invalidUserHandler();
+            } else {
+                if(!P00001 || !P00003) {
+                    sessionStorage.setItem('showType', 'poster');
+                    window.location.href = '//m.iqiyi.com/user.html?redirect_url=' + encodeURIComponent(window.location.href);
+                    return;
+                }
+                gotoPoster();
+                return;
+            }
+        });
+
+        $('.go-link').on('click', function() {
+            if(invalidUser) {
+                invalidUserHandler();
+                return;
+            }
+            if(!P00001 || !P00003) {
+                sessionStorage.setItem('showType', 'link');
+                window.location.href = '//m.iqiyi.com/user.html?redirect_url=' + encodeURIComponent(window.location.href);
+                return;
+            }
+            $('.recommend-filter').removeClass('hide');
+            $('body').css('overflow', 'hidden');
+        });
+        
+    } else if(/iqiyi/i.test(ua)) {
+        // in client
+        iqiyi.ready(function(flag) {
+            iqiyi.init(function(result) {
+                if (result.result != 0) {
+                    var P00001 = result.data.P00001 || $.cookie.get('P00001');
+                    var platform = '97ae2982356f69d8';
+                    var check = result.data.version.replace('.','') || '';
+                    var ver = 78;
+                    if (result.data.type != 'iqiyi') {
+                        ver = 57;
+                    }
+                    if(check < ver) {
+                        $('.rec_body').addClass('hide');
+                        $('.recommend-payResult').removeClass('hide');
+                        $('.bottom-Btn').on('click', function() {
+                            var url = '';
+                            if (result.data.deviceType == 'GPhone') {
+                                if (result.data.type == 'iqiyi') {
+                                    url = '//mbdapp.iqiyi.com/j/ap/iqiyi_10514.apk';
+                                } else {
+                                    url = '//mbdapp.iqiyi.com/j/ps/pps_10515.apk';
+                                }
+                            } else if (result.data.deviceType == 'iPhone'){
+                                if (result.data.type == 'iqiyi') {
+                                    url = 'https://itunes.apple.com/cn/app/ai-qi-yi/id393765873?mt=8';
+                                } else {
+                                    url = 'https://itunes.apple.com/cn/app/ai-qi-yipps-hai-liang-dian/id445375097?mt=8';
+                                }
+                            }
+                            window.location.href = url;
+                        });
+                    } else {
+                        // honban
+                        iqiyi.hideMenu();
+                        $('.exit-link').addClass('hide');
+                        $('.go-poster').addClass('hide');
+                        $('.go-poster').on('click', function() {
+                            if(invalidUser) {
+                                invalidUserHandler();
+                                return;
+                            }
+                            if(!P00001 || P00001 == 0) {
+                                sessionStorage.setItem('showType', 'poster');
+                                // iqiyi.login(window.location.href);
+                                iqiyi.loadNativePage({
+                                    page : 'login',
+                                    returnUrl : window.location.href
+                                });
+                                return;
+                            }
+                            gotoPoster();
+                            return;
+                        });
+
+                        $('.go-link').on('click', function() {
+                            if(invalidUser) {
+                                invalidUserHandler();
+                                return;
+                            }
+                            if(!P00001 || P00001 == 0) {
+                                sessionStorage.setItem('showType', 'link');
+                                // iqiyi.login(window.location.href);
+                                iqiyi.loadNativePage({
+                                    page : 'login',
+                                    returnUrl : window.location.href
+                                });
+                                return;
+                            }
+                            iqiyi.share({
+                                title: shareTitle,
+                                desc: shareDesc,
+                                imgUrl: sharePic,
+                                link: shareLink,
+                                success : function() {},
+                                fail : function() {},
+                                cancel : function() {}
+                            });         
+                        });
+                        iqiyi.showMenu({
+                            share: false,
+                            customService: false,
+                            menus: []
+                        });
+                    }
+                }
+            });
+        });
+    } else {
+        // other env
+        $('.go-poster').on('click', function() {
+            if(invalidUser) {
+                invalidUserHandler();
+                return;
+            }
+            if(!P00001 || !P00003) {
+                sessionStorage.setItem('showType', 'poster');
+                window.location.href = '//m.iqiyi.com/user.html?redirect_url=' + encodeURIComponent(window.location.href);
+                return;
+            }
+            gotoPoster();
+            return;
+        });
+
+        $('.go-link').on('click', function() {
+            if(invalidUser) {
+                invalidUserHandler();
+                return;
+            }
+            if(!P00001 || !P00003) {
+                sessionStorage.setItem('showType', 'link');
+                window.location.href = '//m.iqiyi.com/user.html?redirect_url=' + encodeURIComponent(window.location.href);
+                return;
+            }
+            $('.cover').removeClass('hide'); 
+            $('.m-act-pop').removeClass('hide'); 
+            $('body').css({'overflow': 'hidden', 'height' : '100%'});
+        });
+    }
+
+    // common part
+    $('.recommend-filter').on('click', function() {
+        $('.recommend-filter').addClass('hide');
+        $('body').css('overflow', 'auto');
+    });
+    $('.exit-link').on('click', function() {
+        window.location = '//passport.iqiyi.com/user/logout.php?url=' + encodeURIComponent(window.location.href);
+        return;
+    });
+    $('.popup-close').on('click', function() {
+        $('.cover').addClass('hide'); 
+        $('.m-act-pop').addClass('hide');
+        $('body').css('overflow', 'auto');
+    });
+    $('.popup-ok').on('click', function() {
+        $('.cover').addClass('hide'); 
+        $('.m-act-tip-pop').addClass('hide');
+    });
+
+    $('.recommend-filter').on('touchmove', function(e) {
+        e.preventDefault();
+    });
+    $('.cover').on('touchmove', function(e) {
+        e.preventDefault();
+    });
+    $('.cover').on('touchend', function(e) {
+        e.preventDefault();
+    });
+
+    $('.act-rule').click(function() {
+        window.location = '//vip.iqiyi.com/recommemd-rule-h5.html?redirect_url=' + encodeURIComponent(window.location.href);
+        return;
+    });
+    
+    function getJson(url, cb) {
+        $.ajax({
+            url: url,
+            timeout: 5e3,
+            dataType: "jsonp",
+            jsonp: "callback",
+            success: function(data) {
+                cb(data);
+            },
+            error: function(e, t) {
+            }
+        });
+    }
+    function gotoPoster() {
+        if(invalidUser) {
+            invalidUserHandler();
+            return;
+        }
+        if(fv) {
+            $('.poster img').attr('src', '//serv.vip.iqiyi.com/cashback/recommend/getShareImg.do?platform=97ae2982356f69d8&fv=' + fv);
+        } else {
+            $('.poster img').attr('src', '//serv.vip.iqiyi.com/cashback/recommend/getShareImg.do?platform=97ae2982356f69d8');
+        }
+        $('.rec_body').addClass('hide');
+        $('.poster').removeClass('hide');
+        $(window).scrollTop(0);
+    }
+    function invalidUserHandler() {
+        $('.cover').removeClass('hide'); 
+        $('.m-act-tip-pop').removeClass('hide'); 
+    }
+});
+	;(function(d, m) {
+	    var i = new Image(),
+	        s = '//iqiyi.irs01.com/irt?_iwt_t=i&_iwt_id=&_iwt_UA=UA-iqiyi-000008&r=' + m.random() + +new Date();
+	    i.src = s;
+	})(document, Math);
+</script>
+</html>
+								

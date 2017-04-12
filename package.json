@@ -1,0 +1,29 @@
+{
+	"name": "iqy-web-crawler",
+	"version": "1.0.1",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "node test.js --archive"
+	},
+	"author": "Joey Qiang <qiangyizhou@qiyi.com> (http://www.iqiyi.com)",
+	"license": "ISC",
+	"dependencies": {
+		"babel-register": "",
+		"app-root-path": "",
+		"http": "",
+		"url": "",
+		"request": "",
+		"request-promise-native": "",
+		"fs-extra": "",
+		"fs.extra": "",
+		"path": "",
+		"child_process": "",
+		"phantomjs-prebuilt": "",
+		"webpage": "",
+		"file-compress": ""
+	},
+	"devDependencies": {
+
+	}
+}
